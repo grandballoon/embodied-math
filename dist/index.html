@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Embodied Math — Cartesian Plane</title>
+    <script type="module" crossorigin src="/assets/index-DPN4Mu5p.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DXEyRPDN.css">
+  </head>
+  <body>
+    <video id="webcam" autoplay playsinline muted></video>
+    <canvas id="scene"></canvas>
+
+    <div id="facts-panel" hidden></div>
+
+    <button id="settings-toggle" title="Settings" aria-label="Settings">⚙</button>
+    <div id="settings-popup" hidden>
+      <label>
+        <span>Display mode</span>
+        <select id="display-mode">
+          <option value="extend">Extend to edges</option>
+          <option value="framed">Framed (90%)</option>
+        </select>
+      </label>
+      <label>
+        <span>Grid unit (math units per gridline)</span>
+        <input id="grid-step" type="number" min="0.1" step="0.1" value="1" />
+      </label>
+      <label>
+        <span>Pixels per unit (zoom)</span>
+        <input id="pixels-per-unit" type="number" min="4" step="1" value="40" />
+      </label>
+      <label class="checkbox">
+        <input id="show-grid" type="checkbox" checked />
+        <span>Show grid</span>
+      </label>
+      <label class="checkbox">
+        <input id="show-labels" type="checkbox" checked />
+        <span>Show labels</span>
+      </label>
+
+      <fieldset id="fraction-circles">
+        <legend>Fraction circles</legend>
+        <label>
+          <span>Divide into (equal sectors)</span>
+          <input id="fc-divisions" type="number" min="2" max="24" step="1" value="4" />
+        </label>
+        <button id="fc-add" type="button">Add fraction circle</button>
+      </fieldset>
+
+      <fieldset id="squares">
+        <legend>Squares</legend>
+        <button id="square-add" type="button">Add square</button>
+      </fieldset>
+
+      <fieldset id="vectors">
+        <legend>Vectors</legend>
+        <button id="vector-add" type="button">Add vector</button>
+      </fieldset>
+
+      <fieldset id="shape-visibility">
+        <legend>Visible shapes (off by default — check to show)</legend>
+        <label class="checkbox">
+          <input type="checkbox" data-kind="point" /><span>Points</span>
+        </label>
+        <label class="checkbox">
+          <input type="checkbox" data-kind="vector" /><span>Vectors</span>
+        </label>
+        <label class="checkbox nested">
+          <input id="vector-projection" type="checkbox" disabled /><span>Show projection (v₂ onto v₁)</span>
+        </label>
+        <label class="checkbox">
+          <input type="checkbox" data-kind="segment" /><span>Segments</span>
+        </label>
+        <label class="checkbox">
+          <input type="checkbox" data-kind="circle" /><span>Circles</span>
+        </label>
+        <label class="checkbox">
+          <input type="checkbox" data-kind="fractionCircle" /><span>Fraction circles</span>
+        </label>
+        <label class="checkbox">
+          <input type="checkbox" data-kind="square" /><span>Squares</span>
+        </label>
+        <label class="checkbox nested">
+          <input id="square-diagonal" type="checkbox" disabled /><span>Draw diagonal</span>
+        </label>
+        <label class="checkbox nested">
+          <input id="square-half-diagonal" type="checkbox" disabled /><span>Draw half-diagonal</span>
+        </label>
+        <label class="checkbox">
+          <input type="checkbox" data-kind="triangle" /><span>Triangles</span>
+        </label>
+        <label class="checkbox">
+          <input type="checkbox" data-kind="graph" /><span>Function graphs</span>
+        </label>
+        <label class="checkbox nested">
+          <input type="checkbox" data-graph="linear" checked disabled /><span>Linear</span>
+        </label>
+        <label class="checkbox nested">
+          <input type="checkbox" data-graph="quadratic" checked disabled /><span>Quadratic</span>
+        </label>
+        <label class="checkbox nested">
+          <input type="checkbox" data-graph="sin" checked disabled /><span>Sine</span>
+        </label>
+        <label class="checkbox nested">
+          <input type="checkbox" data-graph="cos" checked disabled /><span>Cosine</span>
+        </label>
+        <label class="checkbox nested">
+          <input type="checkbox" data-graph="tan" checked disabled /><span>Tangent</span>
+        </label>
+        <label class="checkbox">
+          <input type="checkbox" data-kind="unitCircle" /><span>Unit circle</span>
+        </label>
+        <label class="checkbox nested">
+          <input id="trace-sine" type="checkbox" checked disabled /><span>Trace sine wave</span>
+        </label>
+        <label class="checkbox nested">
+          <input id="trace-cosine" type="checkbox" disabled /><span>Trace cosine wave</span>
+        </label>
+        <label class="nested-select">
+          <span>Cosine position</span>
+          <select id="cosine-placement" disabled>
+            <option value="onSine">On top of the sine</option>
+            <option value="right">To the right</option>
+            <option value="above">Above the circle</option>
+          </select>
+        </label>
+      </fieldset>
+    </div>
+
+    <div id="controls-panel">
+      <button id="controls-header" type="button" aria-expanded="true">
+        <span>Controls</span>
+        <span class="chevron" aria-hidden="true">▾</span>
+      </button>
+      <div id="controls-body">
+        <label class="checkbox">
+          <input id="camera-view" type="checkbox" checked />
+          <span>Camera view (off = blue background)</span>
+        </label>
+        <label class="checkbox">
+          <input id="hand-tracking" type="checkbox" />
+          <span>Hand tracking (webcam pinch)</span>
+        </label>
+        <label class="checkbox">
+          <input id="snap-grid" type="checkbox" />
+          <span>Snap to grid points (circles, unit &amp; fraction circles)</span>
+        </label>
+      </div>
+    </div>
+
+  </body>
+</html>
